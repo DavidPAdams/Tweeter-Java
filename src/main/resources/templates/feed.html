@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <title>Message Feet</title>
+  <link th:replace="fragments/headLinks">
+</head>
+<body>
+  <div class="container">
+    <h2>Tweets</h2>
+    <div th:each="tweet:${tweetList}">
+      <h5>@<span th:text="${tweet.user.username}"></span>
+      <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small></h5>
+      <p th:utext="${tweet.message}"></p>
+    </div>
+  </div>
+  <div th:replace="fragments/scripts"></div>
+</body>
+</html>
