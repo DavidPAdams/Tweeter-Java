@@ -34,7 +34,7 @@ public class AuthorizationController {
     User userExists = userService.findByUsername(user.getUsername());
     if (userExists != null) {
       bindingResult.rejectValue("username", "error.user", "Username is already taken!");
-      model.addAttribute("failSignup", "Sign up was unsuccessful");
+      model.addAttribute("failSignup", "Sign up was unsuccessful, NO ACCOUNT FOR YOU");
     }
     if (!bindingResult.hasErrors()) {
       userService.saveNewUser(user);
