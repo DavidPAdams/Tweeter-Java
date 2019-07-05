@@ -1,6 +1,7 @@
 package com.tts.tweeter.model;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -109,6 +110,10 @@ public class User {
   public String toString() {
     return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
         + ", email=" + email + ", password=" + password + ", active=" + active + ", createdAt=" + createdAt + "]";
+  }
+
+  public void setRoles(HashSet<Role> hashSet) {
+    
   }
   
 }
