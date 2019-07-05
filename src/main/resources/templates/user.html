@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <title>User Info</title>
+  <link th:replace="fragments/headLinks">
+</head>
+<body>
+  <div class="container">
+    <div th:replace="fragments/navBar"></div>
+    <h2>Profile for 
+      <span th:text="${user.firstName}"></span>
+      <span th:text="${user.lastName}"></span> - 
+      <span style="color: #00aced">@<span th:text="${user.username}"></span></span>
+    </h2>
+    <h5>Joined <span th:text="${#dated.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
+    <h3>Tweets</h3>
+    <div class="list-group" th:each="tweet:${tweetList}">
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5>
+            @<span th:text="${tweet.user.username}"></span>
+            <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+          </h5>
+        </div>
+        <p class="mb-1" th:text="${tweet.message}"></p>
+      </div>
+    </div>
+  </div>
+  <div th:replace="fragments/scripts"></div>
+</body>
+</html>
