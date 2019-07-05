@@ -7,7 +7,13 @@
 <body>
   <div class="container">
   <div th:replace="fragments/navBar"></div>
-    <h2>Welcome!</h2> 
+    <h2>Welcome!</h2>
+    <div align="center" th:if="${failSignup}">
+      <h3><span class="text-danger" th:utext="${failSignup}"></span></h3>
+    </div>
+    <div align="center" th:if="${successSignup}">
+      <h3><span class="text-success" th:utext="${successSignup}"></span></h3>
+    </div>
     <form th:action="@{/login}" method="post"><br/>
       <input type="text" id="username" name="username" th:placeholder="Username" class="form-control"/> <br/>
       <input type="password" th:placeholder="Password" id="password" name="password" class="form-control"/> <br/>

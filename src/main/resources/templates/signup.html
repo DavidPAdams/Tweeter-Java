@@ -7,7 +7,7 @@
 <body>
   <div class="container">
     <div th:replace="fragments/navBar"></div>
-    <h2>Sign up</h2>    
+    <h2>Sign up</h2>
     <form th:action="@{/signup}" th:object="${user}" method="post" autocomplete="off" >
       <div th:replace="fragments/userForm"></div>
       <div class="form-group">
