@@ -10,5 +10,5 @@ import com.tts.tweeter.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
   public User findByUsername(String username);
-  public List<User> findAllUsers();
+  public List<User> findAll();
 }
