@@ -16,28 +16,31 @@ import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.tts.TTTwitter.model.Role;
+
 @Entity
 public class User {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="user-id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "user-id")
   private Long id;
-  
+
   private String firstName;
   private String lastName;
   private String username;
   private String email;
   private String password;
   private Integer active;
-  
+
   @CreationTimestamp
   private Date createdAt;
-  
-  @ManyToMany(cascade=CascadeType.ALL)
-  @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
-  
-  public User() {};
+
+  public User() {
+  };
 
   public User(String firstName, String lastName, String username, String email, String password, Integer active,
       Date createdAt) {
@@ -105,15 +108,19 @@ public class User {
   public Date getCreatedAt() {
     return createdAt;
   }
+  
+  public Set<Role> getRoles() {
+    return roles;
+  }
 
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+  
   @Override
   public String toString() {
     return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
         + ", email=" + email + ", password=" + password + ", active=" + active + ", createdAt=" + createdAt + "]";
   }
 
-  public void setRoles(HashSet<Role> hashSet) {
-    
-  }
-  
 }
