@@ -12,8 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 public class User {
@@ -22,11 +27,25 @@ public class User {
   @Column(name = "user-id")
   private Long id;
 
+  @NotEmpty(message = "Please provide your first name")
   private String firstName;
+  
+  @NotEmpty(message = "Please provide your last name")
   private String lastName;
+  
+  @Length(min = 3, message = "Username must have at least 3 characters")
+  @Length(max = 15, message = "Username cannot have more than 15 characters")
+  @Pattern(regexp="[^\\s]+", message = "Username cannot contain spaces")
   private String username;
+  
+  @Email(message = "Please provide a valid email")
+  @NotEmpty(message = "Please provide an email")
   private String email;
+  
+  @Length(min = 5, message = "Password must have at least 5 characters")
+  @Length(max = 15, message = "Password cannot have more than 15 characters")
   private String password;
+  
   private Integer active;
 
   @CreationTimestamp

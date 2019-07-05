@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Tweet {
@@ -27,6 +29,8 @@ public class Tweet {
   @OnDelete(action = OnDeleteAction.CASCADE)
   private User user;
   
+  @NotEmpty(message = "Tweet must have content")
+  @Length(max = 240, message = "Tweet is no more than 240 characters")
   private String message;
   
   @CreationTimestamp
