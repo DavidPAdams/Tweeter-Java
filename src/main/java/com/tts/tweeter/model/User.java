@@ -1,7 +1,6 @@
 package com.tts.tweeter.model;
 
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.tts.TTTwitter.model.Role;
 
 @Entity
 public class User {
