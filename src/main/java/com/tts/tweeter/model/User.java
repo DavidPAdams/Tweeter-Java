@@ -1,6 +1,7 @@
 package com.tts.tweeter.model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,12 +20,11 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
-
 @Entity
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user-id")
+  @Column(name = "user_id")
   private Long id;
 
   @NotEmpty(message = "Please provide your first name")
@@ -43,7 +43,6 @@ public class User {
   private String email;
   
   @Length(min = 5, message = "Password must have at least 5 characters")
-  @Length(max = 15, message = "Password cannot have more than 15 characters")
   private String password;
   
   private Integer active;
@@ -54,9 +53,15 @@ public class User {
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
+  
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_follower", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follower_id"))
+  private List<User> followers;
+  
+  @ManyToMany(mappedBy="followers")
+  private List<User> following;
 
-  public User() {
-  };
+  public User() {};
 
   public User(String firstName, String lastName, String username, String email, String password, Integer active,
       Date createdAt) {
@@ -133,6 +138,22 @@ public class User {
     this.roles = roles;
   }
   
+  public List<User> getFollowers() {
+    return followers;
+  }
+
+  public void setFollowers(List<User> followers) {
+    this.followers = followers;
+  }
+
+  public List<User> getFollowing() {
+    return following;
+  }
+
+  public void setFollowing(List<User> following) {
+    this.following = following;
+  }
+
   @Override
   public String toString() {
     return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
