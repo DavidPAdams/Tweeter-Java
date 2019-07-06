@@ -27,10 +27,12 @@
               tweets
             </h5>
           </div>
-          <form th:action="@{/follow/} + ${user.username}" th:if="${!following && !isSelfPage}" method="post">
+          <form th:action="@{/follow/} + ${user.username}" th:if="${followingStatus.containsKey(user.username) 
+&& !followingStatus.get(user.username)}" method="post">
             <button style="float:right" type="Submit" class="btn btn-success">Follow</button>
           </form>
-          <form th:action="@{/unfollow/} + ${user.username}" th:if="${following && !isSelfPage}" method="post">
+          <form th:action="@{/unfollow/} + ${user.username}" th:if="${followingStatus.containsKey(user.username) 
+&& followingStatus.get(user.username)}" method="post">
             <button style="float:right" type="Submit" class="btn btn-primary unfollow_btn">Following</button>
           </form>
         </div>
