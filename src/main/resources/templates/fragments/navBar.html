@@ -13,7 +13,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li sec:authorize="isAuthenticated()">
-            <a href="../users/sec:authentication='name'" style="pointer-events: none; color: #00aced"> 
+            <a th:href="@{|/users/${#authentication.name}|}" style="color: #00aced">
               @<span sec:authentication="name"></span>
             </a>
           </li>
