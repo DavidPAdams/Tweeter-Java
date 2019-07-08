@@ -59,7 +59,8 @@ public class TweetController {
     if (!bindingResult.hasErrors()) {
       tweet.setUser(user);
       tweetService.save(tweet);
-      model.addAttribute("successMessage", new Tweet());
+      model.addAttribute("successMessage", "Tweet was successfully created");
+      model.addAttribute("tweet", new Tweet());
     }
     return "newTweet";
   }
